@@ -1,8 +1,10 @@
 # Array Lexemas
 lexemas = []
+linhas = []
 result = []
 palavra_atual = ''
 
+i = 1
 # abrir codigo
 with open('testPrograms/program.txt', 'r', encoding='utf-8') as arquivo:
     for linha in arquivo:
@@ -11,12 +13,14 @@ with open('testPrograms/program.txt', 'r', encoding='utf-8') as arquivo:
                 palavra_atual += letra
             else:
                 if palavra_atual == '':
-                     lexemas.append(letra)
+                    lexemas.append(letra)
                 else:
                     lexemas.append(palavra_atual)
                     palavra_atual = ''
                     if letra != '':
                         lexemas.append(letra)
+                linhas.append(i)
+        i += 1
 
 # removendo espaços em branco
 item = len(lexemas) - 1
@@ -80,7 +84,7 @@ while i < item:
         token = '\n'
     else:
         token = 'ID'
-    result.insert(i, "Token('" + token + "'," +  " '" + lexemas[i] + "')")
+    result.insert(i, "Token('" + token + "'," +  " '" + lexemas[i] + "'," + str(linhas[i]) +")")
     i += 1
 
 
